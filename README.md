@@ -1,3 +1,3 @@
 # userStory
 
-Udemy - Left off at Section 2:7
+Udemy - Start at Section 2:12
