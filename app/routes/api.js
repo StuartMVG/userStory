@@ -1,5 +1,5 @@
 var User = require('../models/user');
-
+var Story = require('../models/story');
 var config = require('../../config');
 
 var secretKey = config.secretKey;
@@ -8,12 +8,12 @@ var jsonwebtoken = require('jsonwebtoken');
 
 function createToken(user) {
   var token = jsonwebtoken.sign({
-    _id: user._id,
+    id: user._id,
     name: user.name,
-    usermame: user.username
+    username: user.username
   }, secretKey, { //Refer to Lecture 13, Section 2
-      expiresInMinute: 1440
-});
+    expiresInMinute: 1440
+  });
   return token;
 }
 
@@ -62,47 +62,74 @@ module.exports = function(app, express) {
           res.send({message: "Invalid Password"});
         } else {
           // Create token here
-          // Remember to install "jsonwebtoken"
-            var token = createToken(user);
 
-            res.json({
-              success: true,
-              message: "Login Success",
-              token: token
-            });
+          var token = createToken(user);
+
+          res.json({
+            success: true,
+            message: "Login Success",
+            token: token
+          });
         }
       }
     });
   });
 
-//Middleware to check token connected everything above to what is bellow
+  //Middleware to check token connected everything above to what is bellow
   api.use(function(req, res, next) {
-      console.log("Someone has visited the app");
+    console.log("Someone has visited the app");
 
-      var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 
-      // check if token exists
-      if(token) {
-        jsonwebtoken.verify(token, secretKey, function(err, decoded) {
-          if(err) {
-            res.status(403).send({ success: false, message: "Failed to authenticate user"});
-          } else {
-            //If it is successful
-            req.decoded = decoded;
-            next();
-          }
-        });
-      } else {
-          res.status(403).send({ success: false, message: "No token provided"});
-      }
+    // check if token exists
+    if(token) {
+      jsonwebtoken.verify(token, secretKey, function(err, decoded) {
+        if(err) {
+          res.status(403).send({ success: false, message: "Failed to authenticate user"});
+        } else {
+          //If it is successful
+          req.decoded = decoded;
+          next();
+        }
+      });
+    } else {
+      res.status(403).send({ success: false, message: "No token provided"});
+    }
   });
 
   //Destination B // provide a legitimate token
 
-  api.get('/', function(req, res) {
-    res.json("Hello World");
+  api.route('/')
+  .post(function(req, res) {
+    var story = new Story({
+      creator: req.decoded.id,
+      content: req.body.content
+    });
+    story.save(function(err){
+      if(err) {
+        res.send(err);
+        return
+      }
+      res.json({message: "New Story Created!"});
+    });
+  }) //Don't put a semi-colon in a chain
+
+  .get(function(req, res) {
+    Story.find({ creator: req.decoded.id}, function(err, stories) {
+      if(err) {
+        res.send(err);
+        return;
+      }
+      res.json(stories);
+    });
   });
 
-return api
+  api.get('/me', function(req, res) {
+    res.json(req.decoded);
+  });
+
+
+
+  return api
 
 }
