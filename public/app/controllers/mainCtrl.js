@@ -3,7 +3,7 @@ angular.module('mainCtrl', [])
 .controller('MainController', function($rootScope, $location, Auth) {
   var vm = this;
 
-  vm.loggerIn = Auth.isLogged();
+  vm.loggerIn = Auth.isLoggedIn();
 
   $rootScope.$on('$routeChangeStart', function() {
     vm.loggerIn = Auth.isLoggedIn();
