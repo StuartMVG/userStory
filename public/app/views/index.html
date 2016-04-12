@@ -11,13 +11,36 @@
 
 <!-- Services -->
 <script type="text/javascript" src="app/services/authService.js"></script>
+<script type="text/javascript" src="app/services/userService.js"></script>
 <!-- Controllers -->
 <script type="text/javascript" src="app/controllers/mainCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/userCtrl.js"></script>
 
 <script type="text/javascript" src="app/app.routes.js"></script>
 <script type="text/javascript" src="app/app.js"></script>
 </head>
-<body>
+<body ng-controller="MainController as main">
+  <header>
+    <div class="navbar navbar-default">
+      <div class="container">
+        <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>\tUser Story</a>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li><a href="/users"></a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+        <li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
+        <li ng-if="main.loggedIn"><a href="#">Hello {{ main.user.username }}</a></li>
+        <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+
+</header>
+
   <main class="container"> <!-- this creates a container that stops the jumbotron from expanding across the whole screen -->
     <div ng-view></div>
   </main>
