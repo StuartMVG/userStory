@@ -53,13 +53,13 @@ angular.module('authService', [])
   var interceptorFactory = {};
 
   interceptorFactory.request = function(config) {
-    var token = AuthToken = AuthToken.getToken();
+    var token = AuthToken.getToken();
 
     if(token) {
       config.headers['x-access-token'] = token;
     }
     return config;
-  };
+  }
 
   interceptorFactory.responseError = function(response) {
     if(response.status == 403)
@@ -68,4 +68,4 @@ angular.module('authService', [])
     return $q.reject(response);
   }
   return interceptorFactory;
-});
+})
