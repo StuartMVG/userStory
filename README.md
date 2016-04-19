@@ -1,6 +1,6 @@
 # userStory
 
-Udemy - Start at Section 3:29
+Udemy - Start at Section 3:30 at 8:38
 
 
 Problem started in Udemy Class Section 3:25. The Angular script tag https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-route.min.js
