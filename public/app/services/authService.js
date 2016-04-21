@@ -42,7 +42,7 @@
 
   authTokenFactory.setToken = function(token) {
     if(token)
-      $window.localStorage.getItem('token', token);
+      $window.localStorage.setItem('token', token); //This is where the problem is it was getItem and needed to be setItem
     else
       $window.localStorage.removeItem('token');
   }

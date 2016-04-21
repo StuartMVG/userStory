@@ -7,9 +7,13 @@ Udemy - Start at Finished: only need the install and check
 npm socket.io --save
 
 ##Problems
-Problem in authService.js old code is still there and needs to be compared. Application is working now.
+
 
 ##Fixed
+#####1)
+Problem in authService.js old code is still there and needs to be compared. Application is working now. Fixed on line 45: The problem is it was getItem and needed to be setItem
+
+#####2)
 Problem started in Udemy Class Section 3:25. The Angular script tag https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-route.min.js
 seems to be the problem. However I did find a typo in mainCtrl with vm.loggedIn (was vm.loggerIn).
 Error message:
