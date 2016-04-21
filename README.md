@@ -1,8 +1,11 @@
 # userStory
 
-Udemy - Start at Section 3:30 at 8:38
+Udemy - Start at Section 3:31
 
+##Problems
+Problem in authService.js old code is still there and needs to be compared. Application is working now.
 
+##Fixed
 Problem started in Udemy Class Section 3:25. The Angular script tag https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-route.min.js
 seems to be the problem. However I did find a typo in mainCtrl with vm.loggedIn (was vm.loggerIn).
 Error message:

@@ -1,4 +1,4 @@
-angular.modile('storyService', [])
+angular.module('storyService', [])
 
 .factory('Story', function($http) {
   var storyFactory = {};

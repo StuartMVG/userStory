@@ -7,7 +7,7 @@ var UserSchema = new Schema({
 
   name:String,
   username: {type: String, required: true, index: {unique: true }},
-  password: {type: String, require: true, select: false}
+  password: {type: String, required: true, select: false}
 });
 
 UserSchema.pre('save', function(next) {
