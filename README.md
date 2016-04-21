@@ -1,6 +1,10 @@
 # userStory
 
-Udemy - Start at Section 3:31
+Udemy - Start at Finished: only need the install and check
+
+##Installments Needed
+
+npm socket.io --save
 
 ##Problems
 Problem in authService.js old code is still there and needs to be compared. Application is working now.
