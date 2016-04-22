@@ -1,13 +1,10 @@
 # userStory
 
-Udemy - Start at Finished: only need the install and check
+This is an application that allows users to write a story and see what others have written
 
 ##Installments Needed
 
-npm socket.io --save
-
 ##Problems
-
 
 ##Fixed
 #####1)

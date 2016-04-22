@@ -23,6 +23,9 @@ angular.module('appRoutes', ['ngRoute'])
         }
       }
     })
+    .when('/profile', {
+      templateUrl: 'app/views/pages/profile.html',
+    })
 
 
   $locationProvider.html5Mode(true);

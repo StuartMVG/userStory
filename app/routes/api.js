@@ -62,6 +62,8 @@ module.exports = function(app, express, io) {
     });
   });
 
+
+
   api.post('/login', function(req, res) {
     User.findOne({
       username: req.body.username
@@ -118,6 +120,7 @@ module.exports = function(app, express, io) {
   .post(function(req, res) {
     var story = new Story({
       creator: req.decoded.id,
+      username: req.decoded.username,
       content: req.body.content
     });
     story.save(function(err, newStory){
